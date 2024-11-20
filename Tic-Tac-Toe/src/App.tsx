@@ -6,7 +6,7 @@ interface SquareProps{
 }
 
 
-function Square({value, onSquareClick}: SquareProps){
+function Square({value, onSquareClick}: SquareProps): JSX.Element{
   
   return (
     <button className="square" onClick={onSquareClick}>
@@ -16,13 +16,14 @@ function Square({value, onSquareClick}: SquareProps){
 }
 
 
-export default function Board() {
+export default function Board(): JSX.Element{
   
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
   
   function handleClick(index: number){
     
+    // Check if the selected square already marked or if there is a winner
     if(squares[index] || calculateWinner(squares)){
       return;
     }
