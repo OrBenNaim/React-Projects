@@ -16,13 +16,6 @@ function Square({value, onSquareClick}: SquareProps): JSX.Element{
 }
 
 
-interface BoardProps{
-  xIsNext: boolean;
-  squares: string[];
-  onPlay: (nextSquares: string[]) => void;
-}
-
-
 function calculateWinner(squares: string[]): string | null{
   /*
   0  1  2 
@@ -46,15 +39,17 @@ function calculateWinner(squares: string[]): string | null{
   return null;
 }
 
+interface BoardProps{
+  xIsNext: boolean;
+  squares: string[];
+  onPlay: (nextSquares: string[]) => void;
+}
 
 function Board({xIsNext, squares, onPlay}: BoardProps): JSX.Element{
   
-  // const [xIsNext, setXIsNext] = useState(true);
-  // const [squares, setSquares] = useState(Array(9).fill(null));
-  
   function handleClick(index: number): void{
     
-    // Check if the selected square already marked or if there is a winner
+    // Check if the selected square is already marked or if there is a winner
     if(squares[index] || calculateWinner(squares)){
       return;
     }
@@ -71,55 +66,99 @@ function Board({xIsNext, squares, onPlay}: BoardProps): JSX.Element{
   }
 
   const winner = calculateWinner(squares);
-  let status;
+  const status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? "X" : "O"}`;
 
-  if (winner){
-    status = 'Winner: ' + winner;
-  }
-  else{
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
-  }
-
-  return (
+  // Create 9 Squares bu using 2 nested loops :
+  return (  
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
-      </div>
+      {Array(3)
+        .fill(null)
+        .map((_, rowIndex) => (         // The outer loop (Array(3)) iterates over rows
+          <div key={rowIndex} className="board-row">
+            {Array(3)
+              .fill(null)
+              .map((_, colIndex) => {   // The inner loop (Array(3)) iterates over columns within each row 
+                const squareIndex = rowIndex * 3 + colIndex;
+                return (
+                  <Square
+                    key={squareIndex}
+                    value={squares[squareIndex]}
+                    onSquareClick={() => handleClick(squareIndex)}
+                  />
+                );
+              })}
+          </div>
+        ))}
     </>
   );
 }
 
-export default function Game(): JSX.Element{
-  const [xIsNext, setXIsNext] = useState(true);
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+export default function Game(): JSX.Element{                    
 
-  const currentSquares = history[history.length - 1];
+  const [history, setHistory] = useState([Array(9).fill(null)]);    // Each cell represents a specific turn during the game
+  
+  const [currentMove, setCurrentMove] = useState(0);                // currentMove is the index of the last move in the history array
 
+  const xIsNext = currentMove % 2 === 0;                            // xIsNext is a boolean variable that describes if the next turn owned to 'X' or not
+
+  const currentSquares = history[currentMove];                      // currentSquares represents the current turn or the current play
+  
+  const [isAscending, setIsAscending] = useState(false);            // State to track sort order
+
+  
   function handlePlay(nextSquares: string[]): void{
-    setHistory([...history, nextSquares]);
-    setXIsNext(!xIsNext);
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    
+    setHistory(nextHistory);   // Add the new turn and update the 'history' array
+    
+    setCurrentMove(nextHistory.length - 1);
   }
   
+
+  function jumpTo(nextMove: number): void{
+    setCurrentMove(nextMove);
+  }
+
+
+  function toggleSortOrder(): void{
+    setIsAscending(!isAscending);
+  }
+
+
+  const moves = history.map((squares, move: number) => {
+    const prevSquares = move > 0 ? history[move - 1] : null;
+
+    const changedIndex = prevSquares ? squares.findIndex((square, idx) => square !== prevSquares[idx]) : -1;    // Default to -1 if no previous squares
+
+    const row = changedIndex !== -1 ? Math.floor(changedIndex / 3) + 1 : null;
+    const col = changedIndex !== -1 ? (changedIndex % 3) + 1 : null;
+
+    const location = row !== null && col !== null ? `(${row}, ${col})` : null;
+
+    const description = 
+      move === 0 ? "Go to game start" : `Go to move #${move} ${location ? `at ${location}` : ""}`;
+    
+
+    return (
+      <li key={move}>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+
+
+  // Sort moves based on the `isAscending` state
+  const sortedMoves = isAscending ? moves : [...moves].reverse();
+
   return (
     <div className="game">
       <div className="game-board">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className="game-info">
-        <ol>{/*TODO*/}</ol>
+        <button onClick={toggleSortOrder}>Sort Moves</button>
+        <ol>{sortedMoves}</ol>
       </div>
     </div>
   );
