@@ -13,13 +13,13 @@ This project demonstrates a scalable, dynamic Tic-Tac-Toe game. The app tracks m
 - Draw Detection: Displays a message when the game ends in a draw.
 
 ## Table of Contents
-### Features
-### Setup and Installation
-### Usage
-### Technologies Used
-### Screenshots
-### Future Improvements
-### Contact Information
+- [Features](#features)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Technologies Used][#technologies-used]
+- [Screenshots][#screenshots]
+- [Future Improvements][#future-improvements] 
+- [Contact Information][#contact-information]
 
 ## Setup and Installation
 Follow these steps to set up the project locally:
