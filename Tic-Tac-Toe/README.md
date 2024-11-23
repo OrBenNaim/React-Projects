@@ -16,7 +16,7 @@ This project demonstrates a scalable, dynamic Tic-Tac-Toe game. The app tracks m
 - [Features](#features)
 - [Setup and Installation](#setup-and-installation)
 - [Usage](#usage)
-- [Technologies Used][#technologies-used]
+- [Technologies-Used][#technologies-used]
 - [Screenshots][#screenshots]
 - [Future Improvements][#future-improvements] 
 - [Contact Information][#contact-information]
