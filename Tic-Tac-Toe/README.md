@@ -51,10 +51,10 @@ Follow these steps to set up the project locally:
 
 ## Screenshots
 ### Game Board
-![Game Board](assets/screenShots/game-board.png)
-![Ascending Sort](assets/screenShots/ascending-sort.png.png)
-![Descending Sort](assets/screenShots/descending-sort.png.png)
-![Announce the winner](assets/screenShots/winner.png.png)
+![Game Board](src/assets/screenShots/game-board.png)
+![Ascending Sort](src/assets/screenShots/ascending-sort.png.png)
+![Descending Sort](src/assets/screenShots/descending-sort.png.png)
+![Announce the winner](src/assets/screenShots/winner.png.png)
 
 ## Future Improvements
 - Add multiplayer support using WebSockets.
