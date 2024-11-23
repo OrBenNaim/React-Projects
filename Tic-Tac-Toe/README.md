@@ -52,9 +52,9 @@ Follow these steps to set up the project locally:
 ## Screenshots
 ### Game Board
 ![Game Board](src/assets/screenShots/game-board.png)
-### Ascending Sort
+### Ascending Sort Moves
 ![Ascending Sort](src/assets/screenShots/ascending-sort.png)
-### Descending Sort
+### Descending Sort Moves
 ![Descending Sort](src/assets/screenShots/descending-sort.png)
 ### Announce the winner
 ![Announce the winner](src/assets/screenShots/winner.png)
