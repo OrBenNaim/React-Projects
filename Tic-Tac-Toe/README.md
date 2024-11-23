@@ -50,7 +50,6 @@ Follow these steps to set up the project locally:
 - CSS Modules: Encapsulated and reusable styles.
 
 ## Screenshots
-### Game Board
 ![Game Board](src/assets/screenShots/game-board.png)
 ![Ascending Sort](src/assets/screenShots/ascending-sort.png)
 ![Descending Sort](src/assets/screenShots/descending-sort.png)
