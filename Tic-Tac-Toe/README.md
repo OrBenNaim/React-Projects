@@ -6,7 +6,6 @@ This project demonstrates a scalable, dynamic Tic-Tac-Toe game. The app tracks m
 
 ## Features
 - Dynamic Move History: Displays move history with clickable buttons.
-- Winning Highlight: Highlights the three squares that form a winning combination.
 - Move Location Tracking: Displays move positions in the format (row, col).
 - Sorting Options: Toggle between ascending and descending move history.
 - Responsive Design: Optimized for both desktop and mobile views.
