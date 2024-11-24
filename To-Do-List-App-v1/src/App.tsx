@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './styles.css';
 
 interface Task {
@@ -9,14 +9,44 @@ interface Task {
 
 
 function App(): JSX.Element {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    
+    // Load tasks from local storage on initialization
+    const savedTasks = localStorage.getItem('tasks');
+    try {
+      return savedTasks ? JSON.parse(savedTasks) : [];
+    } catch (error) {
+      console.error("Failed to parse tasks from local storage:", error);
+      return [];
+    }
+
+  });
+
   const [newTask, setNewTask] = useState('');
 
+  // Save tasks to local storage whenever tasks change
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+  
+
   const handleAddTask = () => {
-    if (newTask.trim() === "") return;  // Prevent adding empty tasks
+    
+     // Prevent adding empty tasks
+    if (newTask.trim() === "")
+    {            
+      alert("Task title cannot be empty.");
+      return;
+    } 
+
+    // Prevent adding a task with the same title as an existing task
+    if (tasks.some(task => task.title === newTask.trim())) {
+      alert("A task with this title already exists.");
+      return;
+    }
 
     const task: Task = {
-      id: (tasks.length > 0) ? tasks.length + 1 : 1,
+      id: Date.now(),         // Use a timestamp for unique IDs
       title: newTask.trim(),
       completed: false
     };
@@ -26,6 +56,11 @@ function App(): JSX.Element {
   };
   
   const handleRemoveTask = (taskToRemove: Task) => {
+    if (!tasks.some((task) => task.id === taskToRemove.id)) {
+      console.warn(`Task with id ${taskToRemove.id} not found.`);
+      return;
+    }
+    
     setTasks(tasks.filter((task) => task.id !== taskToRemove.id));
   }; 
 
