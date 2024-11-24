@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 
 interface Task {
@@ -9,33 +9,35 @@ interface Task {
 
 
 function App(): JSX.Element {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(Array<Task>);
   const [newTask, setNewTask] = useState('');
 
   const handleAddTask = () => {
     if (newTask.trim() === "") return;  // Prevent adding empty tasks
 
     const task: Task = {
-      id: tasks.length,
-      title: newTask,
+      id: (tasks.length > 0) ? tasks.length + 1 : 1,
+      title: newTask.trim(),
       completed: false
     };
 
-    setTasks([...tasks, task]); // Add the new task to the list
-    setNewTask(''); // Clear input after adding
+    setTasks([...tasks, task]);   // Add the new task to the list
+    setNewTask('');               // Clear input after adding
   };
   
-  const handleRemoveTask = (task: Task) => {
-
+  const handleRemoveTask = (taskToRemove: Task) => {
+    setTasks(tasks.filter((task) => task.id !== taskToRemove.id));
   }; 
 
-  const handleToggleCompleted = (task: Task) => {
-
+  const handleToggleCompleted = (taskToToggle: Task) => {
+    setTasks(tasks.map((task) => 
+      task.id === taskToToggle.id ? {...task, completed: !task.completed} : task
+    ));
   }; 
 
   return (
     <div>
-      <h1>To-Do List</h1>
+      <h1>To-Do List App</h1>
       <input 
         type="text"
         value={newTask}
