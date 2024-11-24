@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import './styles.css';
 
 interface Task {
   id: number;
@@ -9,7 +9,7 @@ interface Task {
 
 
 function App(): JSX.Element {
-  const [tasks, setTasks] = useState(Array<Task>);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState('');
 
   const handleAddTask = () => {
@@ -43,23 +43,19 @@ function App(): JSX.Element {
         value={newTask}
         onChange={(e) => setNewTask(e.target.value)}
         placeholder='Enter new task'
+        aria-label="New task input"
       />
-      <button onClick={handleAddTask}>Add Task</button>
+      <button onClick={handleAddTask} aria-label="Add new task">Add Task</button>
       <ul>
+        {tasks.length === 0 && <p>No tasks yet. Add some!</p>}
         {tasks.map((task: Task) => (
-          <li key={task.id}>
+          <li key={task.id} className={task.completed ? 'completed' : ''}>
             <input 
               type='checkbox'
               checked={task.completed}
               onChange={() => handleToggleCompleted(task)}
             />
-            <span
-              style={{
-                textDecoration: task.completed? 'line-through' : 'none',
-              }}
-            >
-              {task.title}
-            </span>
+            <span>{task.title}</span>
             <button onClick={() => handleRemoveTask(task)}>Remove</button>
           </li>
         ))}
