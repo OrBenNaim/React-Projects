@@ -84,7 +84,10 @@ function App(): JSX.Element {
   }; 
 
   return (
-    <Box sx={{ p: 8 }}>
+    <Box 
+    sx={{ p: 8 }}>
+      
+      {/* Create Main Header */}
       <Grid2 container spacing={3} justifyContent="center">
         <Grid2 size={{xs: 20}} display="flex" justifyContent="center">
           <Typography variant="h4" component="h1" gutterBottom>
@@ -92,8 +95,8 @@ function App(): JSX.Element {
           </Typography>
         </Grid2>
 
-
-        <Grid2 size={{xs: 3, md:6}} >
+        {/* Create Text input */}
+        <Grid2 size={{xs: 12, md: 4, lg: 3}} >
           <TextField
             label="New Task"
             variant="outlined"
@@ -103,19 +106,49 @@ function App(): JSX.Element {
             placeholder="Enter a new task"
           />
         </Grid2>
+
+        {/* Create "Add Task" Button */}
         <Grid2 size={{xs: 2}} display="flex" justifyContent="center">
           <Button
             variant="contained"
             color="success"
             onClick={handleAddTask}
             fullWidth
+            sx={{
+              fontSize: '1.25rem', // Increases the font size
+              fontWeight: 'bold',  // Optional: Makes the text bold
+            }}
           >
             Add Task
           </Button>
         </Grid2>
+
+        {/* Create  */}
         <Grid2 size={{xs: 12}}>
-        <List>
-            {tasks.length === 0 && <Typography>No tasks yet. Add some!</Typography>}
+        <List
+          sx={{
+            justifyContent: 'center',     // Center horizontally
+            alignItems: 'center',         // Center vertically
+          }}
+        >
+            {tasks.length === 0 && (
+              <Typography
+              variant="h6"
+              sx={{
+                  color: 'black',                    // Change text color
+                  fontStyle: 'italic',              // Italicized text
+                  textAlign: 'center',              // Center the text
+                  backgroundColor: '#a4625e',        // Add a light background
+                  width: '50%',                      // Limit the width of the message
+                  margin: '0 auto',                  // Center the Typography within its parent
+                  padding: 5,                       // Add padding around the text
+                  borderRadius: 5,                  // Slightly round the edges
+                  border: '1px solid lightgray',    // Optional border
+              }}
+              >  
+              No tasks yet. Add some!
+              </Typography>
+            )}
             {tasks.map((task: Task) => (
               <ListItem
                 key={task.id}
@@ -143,6 +176,7 @@ function App(): JSX.Element {
                 />
               </ListItem>
             ))}
+
             <p>Total tasks: {tasks.length}</p>
             <p>Completed tasks: {tasks.filter((task: Task) => task.completed).length}</p>
           </List>
