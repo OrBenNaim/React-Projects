@@ -84,14 +84,16 @@ function App(): JSX.Element {
   }; 
 
   return (
-    <Box sx={{ p: 4 }}>
-      <Grid2 container spacing={3}>
-        <Grid2 size={{xs: 12}}>
+    <Box sx={{ p: 8 }}>
+      <Grid2 container spacing={3} justifyContent="center">
+        <Grid2 size={{xs: 20}} display="flex" justifyContent="center">
           <Typography variant="h4" component="h1" gutterBottom>
             To-Do List App
           </Typography>
         </Grid2>
-        <Grid2 size={{xs: 12}}>
+
+
+        <Grid2 size={{xs: 3, md:6}} >
           <TextField
             label="New Task"
             variant="outlined"
@@ -101,10 +103,10 @@ function App(): JSX.Element {
             placeholder="Enter a new task"
           />
         </Grid2>
-        <Grid2 size={{xs: 12}}>
+        <Grid2 size={{xs: 2}} display="flex" justifyContent="center">
           <Button
             variant="contained"
-            color="primary"
+            color="success"
             onClick={handleAddTask}
             fullWidth
           >
