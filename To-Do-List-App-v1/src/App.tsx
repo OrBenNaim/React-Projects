@@ -13,9 +13,11 @@ function App(): JSX.Element {
     
     // Load tasks from local storage on initialization
     const savedTasks = localStorage.getItem('tasks');
+    
     try {
       return savedTasks ? JSON.parse(savedTasks) : [];
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Failed to parse tasks from local storage:", error);
       return [];
     }
