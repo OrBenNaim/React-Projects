@@ -177,8 +177,15 @@ function App(): JSX.Element {
               </ListItem>
             ))}
 
-            <p>Total tasks: {tasks.length}</p>
-            <p>Completed tasks: {tasks.filter((task: Task) => task.completed).length}</p>
+            <Typography
+              sx={{
+                color: 'black',                    // Change text color
+                
+              }}
+            >
+              Total tasks: {tasks.length}
+            </Typography>
+            <Typography>Completed tasks: {tasks.filter((task: Task) => task.completed).length}</Typography>
           </List>
         </Grid2>
       </Grid2>
