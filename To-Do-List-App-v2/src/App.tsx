@@ -137,6 +137,22 @@ function App(): JSX.Element {
               marginTop: 3,
             }}
           >
+            {/* Task Count Messages */}
+            <Box
+              sx={{
+                alignSelf: 'flex-start', // Align to the left of the container
+                marginBottom: 2,         // Add spacing below the count messages
+              }}
+            >
+              <Typography>
+                <strong>Total tasks:</strong> {tasks.length}
+              </Typography>
+              <Typography>
+                <strong>Completed tasks:</strong>{' '}
+                {tasks.filter((task: Task) => task.completed).length}
+              </Typography>
+            </Box>
+
             {/* Task List */}
             <List sx={{ width: '100%', maxWidth: '400px' }}>
               
