@@ -85,110 +85,121 @@ function App(): JSX.Element {
 
   return (
     <Box 
-        sx={{p: 8}}
+        sx={{p: 4}}
     >
-        {/* Create the main Grid for all the items: Text input, 'Add Task' Button, etc. */}
-        <Grid2 container spacing={2} justifyContent="center">    
+      {/* Create the main Grid for all the items: Text input, 'Add Task' Button, etc. */}
+      <Grid2 container spacing={4} justifyContent="center">    
             
-           {/* Create Main Header*/}
-            <Grid2 size={{xs: 12}} display="flex" justifyContent="center">
+        {/* Create Main Header*/}
+        <Grid2 size={{xs: 12}} display="flex" justifyContent="center">
                 
-                {/* Create Main Header */}
-                <Typography variant="h4" component="h1">
-                    To-Do List App
-                </Typography>
+          {/* Create Main Header */}
+          <Typography variant="h4" component="h1">
+            To-Do List App
+          </Typography>
 
-            </Grid2>
-
-            {/* Create Text input */}
-            <Grid2 size={{xs: "auto"}}>
-                    <TextField
-                    label="New Task"
-                    variant="outlined"
-                    fullWidth
-                    value={newTask}
-                    onChange={(e) => setNewTask(e.target.value)}
-                    placeholder="Enter a new task"  
-                    />     
-                </Grid2>
-
-            {/* Create 'Add Task' Button */}
-            <Grid2 size={{xs: "auto"}}>
-                <Button
-                    variant="contained"
-                    color="success"
-                    onClick={handleAddTask}
-                    fullWidth
-                    sx={{
-                    fontSize: '1.25rem', // Increases the font size
-                    fontWeight: 'bold',  // Optional: Makes the text bold
-                    }}
-                >
-                    Add Task
-                </Button>
-            </Grid2>
-                
-            {/* Create Tasks List */}
-            <Grid2 size={{xs: "auto"}}>
-                <List sx={{ width: '100%', maxWidth: '400px' }}> 
-                       
-                    {/* Create message for empty tasks list situation*/}
-                    {tasks.length === 0 ? (
-                        <Typography
-                            variant="h6"
-                            sx={{
-                                color: 'black',
-                                fontStyle: 'italic',
-                                textAlign: 'center',
-                                backgroundColor: '#a4625e',
-                                width: '100%',
-                                padding: 2,
-                                borderRadius: 2,
-                                border: '1px solid lightgray',
-                            }}
-                        >
-                        No tasks yet. Add some!
-                    </Typography>
-                ) : (
-                    tasks.map((task: Task) => (
-                        <ListItem
-                            key={task.id}
-                            sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'left',
-                            }}
-                        >
-                            {/* Checkbox and Task Title */}
-                            <Checkbox
-                            checked={task.completed}
-                            onChange={() => handleToggleCompleted(task)}
-                            sx={{ marginRight: 1 }}   // Spacing between checkbox and text
-                            />
-                            <ListItemText
-                                primary={task.title}
-                                primaryTypographyProps={{
-                                    style: {
-                                    textDecoration: task.completed ? 'line-through' : 'none'
-                                    },
-                                }}
-                                sx={{
-                                    flex: 1,     // Allows the text to take up space without affecting the delete button
-                                }}
-                            />
-                            <IconButton
-                                edge="end"
-                                aria-label="delete"
-                                onClick={() => handleRemoveTask(task)}
-                            >
-                                <DeleteIcon />
-                            </IconButton>
-                        </ListItem>
-                        ))
-                    )}
-                </List>
-            </Grid2>
         </Grid2>
+
+        {/* Create status of completed tasks */}
+        <Grid2>
+          <Typography>
+            <></>Total tasks: {tasks.length}
+          </Typography>
+
+          <Typography>
+            Completed tasks: {tasks.filter((task: Task) => task.completed).length}
+          </Typography>
+        </Grid2>
+        
+        {/* Create Text input */}
+        <Grid2 size={{xs: "auto"}}>
+          <TextField
+            label="New Task"
+            variant="outlined"
+            fullWidth
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            placeholder="Enter a new task"  
+          />     
+        </Grid2>
+
+        {/* Create 'Add Task' Button */}
+        <Grid2 size={{xs: "auto"}}>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={handleAddTask}
+            fullWidth
+            sx={{
+              fontSize: '1.25rem', // Increases the font size
+              fontWeight: 'bold',  // Optional: Makes the text bold
+            }}
+          >
+            Add Task
+          </Button>
+        </Grid2>
+                
+        {/* Create Tasks List */}
+        <Grid2 size={{xs: 12}} display="flex" justifyContent="center">
+          <List sx={{ width: '100%', maxWidth: '400px' }}> 
+                       
+            {/* Create message for empty tasks list situation*/}
+            {tasks.length === 0 ? (
+              <Typography
+                variant="h6"
+                sx={{
+                  color: 'black',
+                  fontStyle: 'italic',
+                  textAlign: 'center',
+                  backgroundColor: '#a4625e',
+                  width: '100%',
+                  padding: 2,
+                  borderRadius: 2,
+                  border: '1px solid lightgray',
+                }}
+              >
+                No tasks yet. Add some!
+              </Typography>
+              ) : (
+                tasks.map((task: Task) => (
+                  <ListItem
+                    key={task.id}
+                    sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'left',
+                    }}
+                  >
+                  {/* Checkbox and Task Title */}
+                  <Checkbox
+                    checked={task.completed}
+                    onChange={() => handleToggleCompleted(task)}
+                    sx={{ marginRight: 1 }}   // Spacing between checkbox and text
+                  />
+                  <ListItemText
+                    primary={task.title}
+                    primaryTypographyProps={{
+                      style: {
+                        textDecoration: task.completed ? 'line-through' : 'none'
+                      },
+                    }}
+                    sx={{
+                      flex: 1,     // Allows the text to take up space without affecting the delete button
+                    }}
+                  />
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => handleRemoveTask(task)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                  </ListItem>
+                ))
+            )}
+          </List>
+        </Grid2>
+      </Grid2>
     </Box>
   );
 }
