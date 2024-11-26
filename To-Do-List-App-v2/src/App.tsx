@@ -88,12 +88,17 @@ function App(): JSX.Element {
     sx={{ p: 8 }}
     >
       
-      {/* Create Main Header */}
+      {/* Create Main Grid */}
       <Grid2 container spacing={3} justifyContent="center">
+        
+        {/* Create Grid for Main Header */}
         <Grid2 size={{xs: 20}} display="flex" justifyContent="center">
+          
+          {/* Create Main Header */}
           <Typography variant="h4" component="h1" gutterBottom>
             To-Do List App
           </Typography>
+
         </Grid2>
 
         {/* Create Text input */}
@@ -124,16 +129,16 @@ function App(): JSX.Element {
           </Button>
         </Grid2>
 
-        {/* Create Tasks List*/}
+        {/* Create Task Count and List */}
         <Grid2 size={{ xs: 12 }}>
 
           {/* Center the list of tasks */}
           <Box
             sx={{
               display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: tasks.length === 0 ? 'center' : 'flex-start',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'flex-start',
               marginTop: 3,
             }}
           >
@@ -144,8 +149,8 @@ function App(): JSX.Element {
                 marginBottom: 2,         // Add spacing below the count messages
               }}
             >
-              <Typography>
-                <strong>Total tasks:</strong> {tasks.length}
+              <Typography sx={{ mb: 1, fontWeight: 'bold' }}>
+                Total tasks: {tasks.length}
               </Typography>
               <Typography>
                 <strong>Completed tasks:</strong>{' '}
@@ -156,7 +161,7 @@ function App(): JSX.Element {
             {/* Task List */}
             <List sx={{ width: '100%', maxWidth: '400px' }}>
               
-              {/* Message for no tasks situation*/}
+              {/* Create message for empty tasks list situation*/}
               {tasks.length === 0 ? (
                 <Typography
                   variant="h6"
@@ -187,7 +192,7 @@ function App(): JSX.Element {
                     <Checkbox
                       checked={task.completed}
                       onChange={() => handleToggleCompleted(task)}
-                      sx={{ marginRight: 1 }} // Spacing between checkbox and text
+                      sx={{ marginRight: 1 }}   // Spacing between checkbox and text
                     />
                     <ListItemText
                       primary={task.title}
