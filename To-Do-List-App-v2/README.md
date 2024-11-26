@@ -1,50 +1,70 @@
-# React + TypeScript + Vite
+# To-Do-List-App-v2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+To-Do-List-App-v2 is an enhanced task management application built with React and Material-UI (MUI). It provides an intuitive interface for managing tasks and introduces advanced styling and layout capabilities. This app is designed for users looking for a robust and visually appealing to-do list solution.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- **Add Tasks**: Add new tasks seamlessly.
+- **Mark as Completed**: Toggle tasks as completed or incomplete.
+- **Remove Tasks**: Delete tasks with a single click.
+- **Task Summary**: View total and completed task counts.
+- **Persistent Storage**: Tasks are saved in local storage and remain after refreshing the page.
+- **Material-UI Integration**: A modern and responsive design powered by Material-UI components.
+- **Keyboard Accessibility**: Navigate and interact with tasks using keyboard shortcuts.
 
-## Expanding the ESLint configuration
+## Table of Contents
+- [Features](#features)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Future Improvements](#future-improvements)
+- [Contact Information](#contact-information)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Setup and Installation
+Follow these steps to set up the project locally:
+1. Clone the repository: 
+    git clone https://github.com/OrBenNaim/React-Projects.git
 
-- Configure the top-level `parserOptions` property like this:
+2. Navigate to the Tic-Tac-Toe directory:
+    cd React-Projects/To-Do-List-App-v2
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+3. Install the dependencies:
+    npm install
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+4. Start the development server:
+    npm run dev
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+5. Open http://localhost:5173 in your browser to view the app.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+## Usage
+1. Enter a task title in the input field.
+2. Click the Add Task button to add it to the list.
+3. Mark a task as completed by checking the checkbox next to it.
+4. Remove a task by clicking the delete icon.
+5. View the total and completed task counts above the task list.
+
+
+## Technologies Used
+- React: Component-based UI library for building interactive interfaces.
+- TypeScript: Ensures type safety and better code maintainability.
+- Material-UI (MUI): A modern React component library for sleek and accessible
+- Vite: Fast development server and build tool.
+- Local Storage: Persists task data across sessions.
+
+
+## Screenshots
+### Main Page
+![Main Page](src/assets/screenShots/main-page.png)
+### Add Tasks
+![Add Tasks](src/assets/screenShots/added-tasks.png)
+### Toggle Task Status
+![Toggle Task Status](src/assets/screenShots/toggle-task-status.png)
+
+
+## Contact Information
+- GitHub: OrBenNaim
+- Email: orbennaim123@gmail.com
+- LinkedIn: linkedin.com/in/or-ben-naim-eee
