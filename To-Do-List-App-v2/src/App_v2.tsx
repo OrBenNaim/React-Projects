@@ -128,12 +128,12 @@ function App(): JSX.Element {
                 </Button>
             </Grid2>
                 
-                {/* Create Tasks List */}
-                <Grid2 size={{xs: "auto"}}>
-                    <List sx={{ width: '100%', maxWidth: '400px' }}> 
+            {/* Create Tasks List */}
+            <Grid2 size={{xs: "auto"}}>
+                <List sx={{ width: '100%', maxWidth: '400px' }}> 
                        
-                       {/* Create message for empty tasks list situation*/}
-                       {tasks.length === 0 ? (
+                    {/* Create message for empty tasks list situation*/}
+                    {tasks.length === 0 ? (
                         <Typography
                             variant="h6"
                             sx={{
@@ -147,10 +147,10 @@ function App(): JSX.Element {
                                 border: '1px solid lightgray',
                             }}
                         >
-                            No tasks yet. Add some!
-                        </Typography>
-                        ) : (
-                        tasks.map((task: Task) => (
+                        No tasks yet. Add some!
+                    </Typography>
+                ) : (
+                    tasks.map((task: Task) => (
                         <ListItem
                             key={task.id}
                             sx={{
@@ -184,14 +184,11 @@ function App(): JSX.Element {
                                 <DeleteIcon />
                             </IconButton>
                         </ListItem>
-                    ))
-                )}
-
-                    </List>
-                </Grid2>
-
+                        ))
+                    )}
+                </List>
+            </Grid2>
         </Grid2>
-
     </Box>
   );
 }
