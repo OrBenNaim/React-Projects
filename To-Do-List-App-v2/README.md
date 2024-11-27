@@ -1,14 +1,15 @@
 # To-Do-List-App-v2
 
 ## Description
-
-To-Do-List-App-v2 is an enhanced task management application built with React and Material-UI (MUI). It provides an intuitive interface for managing tasks and introduces advanced styling and layout capabilities. This app is designed for users looking for a robust and visually appealing to-do list solution.
+To-Do-List-App-v2 is an enhanced task management application built with React and Material-UI (MUI). It offers a sleek, user-friendly interface for managing tasks efficiently, providing users with advanced styling, functionality, and a seamless experience.
 
 ## Features
+- ** Home Page**: Welcome screen with user name input.
 - **Add Tasks**: Add new tasks seamlessly.
 - **Mark as Completed**: Toggle tasks as completed or incomplete.
 - **Remove Tasks**: Delete tasks with a single click.
 - **Task Summary**: View total and completed task counts.
+- **Real-Time Updates**: Automatically updates the task list and count.
 - **Persistent Storage**: Tasks are saved in local storage and remain after refreshing the page.
 - **Material-UI Integration**: A modern and responsive design powered by Material-UI components.
 - **Keyboard Accessibility**: Navigate and interact with tasks using keyboard shortcuts.
@@ -40,7 +41,7 @@ Follow these steps to set up the project locally:
 
 
 ## Usage
-1. Enter a task title in the input field.
+1. Start at the Home Page and enter your name to proceed.
 2. Click the Add Task button to add it to the list.
 3. Mark a task as completed by checking the checkbox next to it.
 4. Remove a task by clicking the delete icon.
@@ -53,6 +54,12 @@ Follow these steps to set up the project locally:
 - Material-UI (MUI): A modern React component library for sleek and accessible
 - Vite: Fast development server and build tool.
 - Local Storage: Persists task data across sessions.
+
+## Future Improvements
+- Advanced Sorting: Allow sorting tasks by name or completion status.
+- Search Feature: Add a search bar to filter tasks by keywords.
+- Task Due Dates: Include an optional due date field for tasks.
+- Dark Mode: Add support for a dark theme.
 
 
 ## Screenshots
