@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import ToDoListApp from './pages/ToDoListPage';
+import ToDoListApp from './pages/TasksPage';
 
 function App() {
-  const [userName, setUserName] = useState<string | null>(null);
-
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage setUserName={setUserName} />} />
-        <Route path="/app" element={<ToDoListApp userName={userName} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/app" element={<ToDoListApp />} />
       </Routes>
     </Router>
   );

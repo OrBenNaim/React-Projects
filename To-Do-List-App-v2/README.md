@@ -56,10 +56,14 @@ Follow these steps to set up the project locally:
 
 
 ## Screenshots
-### Main Page
-![Main Page](src/assets/screenShots/main-page.png)
+### Home Page
+![Home Page](src/assets/screenShots/home-page.png)
+### Enter Name First
+![Enter Name First](src/assets/screenShots/enter-name-first.png)
+### Tasks Page
+![Tasks Page](src/assets/screenShots/tasks-page.png)
 ### Add Tasks
-![Add Tasks](src/assets/screenShots/added-tasks.png)
+![Add Tasks](src/assets/screenShots/adding-task.png)
 ### Toggle Task Status
 ![Toggle Task Status](src/assets/screenShots/toggle-task-status.png)
 

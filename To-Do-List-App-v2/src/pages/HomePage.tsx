@@ -9,18 +9,23 @@ import {
   CardContent,
 } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
+import {saveToLocalStorage} from '../utils/localStorageUtils'
 
 
-function HomePage({ setUserName }: { setUserName: (name: string) => void }) {
-  const [name, setName] = useState('');
+function HomePage() {
+  const [username, setUserName] = useState('');
   const navigate = useNavigate();
 
+  
   const handleGetStarted = () => {
-    if (name.trim() === '') {
+    if (username.trim() === '') {
       alert('Please enter your name to continue.');
       return;
     }
-    setUserName(name.trim());
+    setUserName(username.trim());
+
+    saveToLocalStorage('username', username);
+
     navigate('/app');
   };
 
@@ -51,7 +56,7 @@ function HomePage({ setUserName }: { setUserName: (name: string) => void }) {
               <Typography
                 variant="h4"
                 align="center"
-                sx={{ fontWeight: 'bold', color: '#1976d2' }}
+                sx={{ fontWeight: 'bold'}}
               >
                 Welcome to your To-Do List App!
               </Typography>
@@ -63,8 +68,8 @@ function HomePage({ setUserName }: { setUserName: (name: string) => void }) {
                 label="Enter your name"
                 variant="outlined"
                 fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
                 sx={{
                   '& .MuiInputLabel-root': { color: '#1976d2' }, // Custom label color
                   '& .MuiOutlinedInput-root': {

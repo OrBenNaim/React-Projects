@@ -12,30 +12,15 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Grid2 from '@mui/material/Grid2';
+import {loadFromLocalStorage, saveToLocalStorage} from '../utils/localStorageUtils'
+
 
 interface Task {
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
-function saveToLocalStorage<T>(key: string, value: T): void {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.error(`Failed to save ${key} to local storage:`, error);
+    id: number;
+    title: string;
+    completed: boolean;
   }
-}
 
-function loadFromLocalStorage<T>(key: string): T | null {
-  try {
-    const savedValue = localStorage.getItem(key);
-    return savedValue ? JSON.parse(savedValue) : null;
-  } catch (error) {
-    console.error(`Failed to load ${key} from local storage:`, error);
-    return null;
-  }
-}
 
 function TaskItem({
   task,
@@ -115,11 +100,17 @@ function TaskList({
   );
 }
 
-function App(): JSX.Element {
+export default function TaskListApp(): JSX.Element {
+
   const [tasks, setTasks] = useState<Task[]>(
     () => loadFromLocalStorage<Task[]>('tasks') || []
   );
   const [newTask, setNewTask] = useState('');
+
+
+  const [username] = useState<string>(
+    () => loadFromLocalStorage<string>('username') || ""
+  );
 
   useEffect(() => {
     saveToLocalStorage('tasks', tasks);
@@ -174,7 +165,7 @@ function App(): JSX.Element {
         {/* Create Main Header*/}
         <Grid2 size={{xs: 12}} display="flex" justifyContent="center">
           <Typography variant="h4" component="h1">
-            To-Do List App
+            Hello, {username}! Let's manage your tasks.
           </Typography>
         </Grid2>
 
@@ -226,5 +217,3 @@ function App(): JSX.Element {
     </Box>
   );
 }
-
-export default App;
