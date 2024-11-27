@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import ToDoListApp from './components/ToDoListApp';
+import ToDoListApp from './pages/ToDoListPage';
 
 function App() {
   const [userName, setUserName] = useState<string | null>(null);
