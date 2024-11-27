@@ -7,16 +7,22 @@ import {
   Typography,
   Card,
   CardContent,
+  Switch,
+  FormControlLabel,
 } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
-import {saveToLocalStorage} from '../utils/localStorageUtils'
+import { saveToLocalStorage } from '../utils/localStorageUtils';
 
-
-function HomePage() {
+function HomePage({
+  toggleDarkMode,
+  isDarkMode,
+}: {
+  toggleDarkMode: () => void;
+  isDarkMode: boolean;
+}) {
   const [username, setUserName] = useState('');
   const navigate = useNavigate();
 
-  
   const handleGetStarted = () => {
     if (username.trim() === '') {
       alert('Please enter your name to continue.');
@@ -36,7 +42,7 @@ function HomePage() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: isDarkMode ? '#121212' : '#f5f5f5',
         padding: 2,
       }}
     >
@@ -51,19 +57,23 @@ function HomePage() {
       >
         <CardContent>
           <Grid2 container spacing={4} justifyContent="center">
+            {/* Dark Mode Toggle */}
+            <Grid2 size={{ xs: 12 }} display="flex" justifyContent="flex-end">
+              <FormControlLabel
+                control={<Switch checked={isDarkMode} onChange={toggleDarkMode} />}
+                label="Dark Mode"
+              />
+            </Grid2>
+
             {/* Welcome Message */}
-            <Grid2 size={{xs: 12}}>
-              <Typography
-                variant="h4"
-                align="center"
-                sx={{ fontWeight: 'bold'}}
-              >
+            <Grid2 size={{ xs: 12 }}>
+              <Typography variant="h4" align="center" sx={{ fontWeight: 'bold' }}>
                 Welcome to your To-Do List App!
               </Typography>
             </Grid2>
 
             {/* Name Input */}
-            <Grid2 size={{xs: 12}}>
+            <Grid2 size={{ xs: 12 }}>
               <TextField
                 label="Enter your name"
                 variant="outlined"
@@ -71,7 +81,7 @@ function HomePage() {
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
                 sx={{
-                  '& .MuiInputLabel-root': { color: '#1976d2' }, // Custom label color
+                  '& .MuiInputLabel-root': { color: '#1976d2' },
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': { borderColor: '#1976d2' },
                     '&:hover fieldset': { borderColor: '#115293' },
@@ -81,7 +91,7 @@ function HomePage() {
             </Grid2>
 
             {/* Get Started Button */}
-            <Grid2 size={{xs: 12}} display="flex" justifyContent="center">
+            <Grid2 size={{ xs: 12 }} display="flex" justifyContent="center">
               <Button
                 variant="contained"
                 color="primary"
